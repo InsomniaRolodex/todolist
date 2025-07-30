@@ -135,6 +135,40 @@ export const addNewTodo = createAsyncThunk<void, string, { rejectValue: string }
   }
 );
 
+export const patchTodo = createAsyncThunk<
+  void,
+  {id: number, text: string},
+  { rejectValue: string }
+>("todos/editTodo", async function ({id, text}, { rejectWithValue, dispatch }) {
+  try {
+    const todo = {
+      title: text,
+    };
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/todos/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(todo)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Can not edit todo for some reason");
+    }
+
+    dispatch(editTodo({ id, text }));
+  } catch (err) {
+    if (err instanceof Error) {
+      return rejectWithValue(err.message);
+    }
+
+    return rejectWithValue("Unknown error");
+  }
+});
+
 const setError = (
   state: todosProcess,
   action: {
@@ -180,7 +214,17 @@ const todoSlice = createSlice({
     },
     toggleFilter(state, action) {
       state.filterStatus = action.payload;
-    }
+    },
+    editTodo(state, action) {
+      const currentTodo = state.todos.find(
+        (todo) => todo.id === action.payload.id
+      );
+      if (currentTodo) {
+        currentTodo.title = action.payload.text;
+      } else {
+        throw new Error("Can not edit todo for some reason");
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -198,6 +242,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { addTodo, removeTodo, toggleTodoComplete, toggleFilter } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodoComplete, toggleFilter, editTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

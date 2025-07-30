@@ -1,13 +1,14 @@
 import { JSX } from "react";
 import { FilterType, useAppDispatch, useAppSelector } from "../types/types";
 import { deleteTodo, toggleFilter } from "../store/todo-slice";
-import { getTodos } from "../selectors";
+import { getFilterType, getTodos } from "../selectors";
 
 
 const TodoFilter = (): JSX.Element => {
     const todos = useAppSelector(getTodos);
     const activeTodos = todos.filter(todo => !todo.completed);
     const dispatch = useAppDispatch();
+    const filterType = useAppSelector(getFilterType);
     const clearCompletedTasks = () => {
         const completedTodos = todos.filter(todo => todo.completed);
         completedTodos.forEach(todo => dispatch(deleteTodo(todo.id)))
@@ -18,18 +19,21 @@ const TodoFilter = (): JSX.Element => {
             <label htmlFor="all">
                 <input type="radio" name="filter" value={'All'} id="all"
                     onChange={(e) => dispatch(toggleFilter(e.target.value as FilterType))}
+                    checked={filterType === 'All'}
                 />
                 All
             </label>
             <label htmlFor="active">
                 <input type="radio" name="filter" value={'Active'} id="active"
                     onChange={(e) => dispatch(toggleFilter(e.target.value as FilterType))}
+                    checked={filterType === 'Active'}
                 />
                 Active
             </label>
             <label htmlFor="completed">
                 <input type="radio" name="filter" value={'Completed'} id="completed" 
                     onChange={(e) => dispatch(toggleFilter(e.target.value as FilterType))}
+                    checked={filterType === 'Completed'}
                 />
                 Completed
             </label>
