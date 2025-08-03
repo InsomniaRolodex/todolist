@@ -1,9 +1,9 @@
-import './App.css';
+import './styles/App.scss';
 import { useState, useEffect } from 'react';
 import TodoList from './components/todo-list';
 import InputFiled from './components/input-field';
 
-import {addNewTodo, fetchTodos} from './store/todo-slice'
+import {addNewTodo, fetchTodos} from './store/api-actions'
 import TodoFilter from './components/todo-filter';
 import { State, useAppDispatch, useAppSelector } from './types/types';
 
@@ -23,16 +23,16 @@ function App() {
   
   return (
     <div className="App">
-      <InputFiled 
-      text={text} 
-      handleInput={setText} 
-      handleSubmit={addTask}/>
 
       {status === 'loading' && <h2>Loading in process...</h2>}
       {error && <h2>Error occured! {error}</h2>}
 
       <TodoList />
       <TodoFilter />
+      <InputFiled
+        text={text}
+        handleInput={setText}
+        handleSubmit={addTask} />
     </div>
   );
 }

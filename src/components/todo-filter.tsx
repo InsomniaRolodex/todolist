@@ -1,7 +1,8 @@
 import { JSX } from "react";
 import { FilterType, useAppDispatch, useAppSelector } from "../types/types";
-import { deleteTodo, toggleFilter } from "../store/todo-slice";
+import { toggleFilter } from "../store/todo-slice";
 import { getFilterType, getTodos } from "../selectors";
+import { deleteTodo } from "../store/api-actions";
 
 
 const TodoFilter = (): JSX.Element => {
