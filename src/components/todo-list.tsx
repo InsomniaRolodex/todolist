@@ -6,7 +6,7 @@ import { getFilteredTodos } from "../selectors";
 const TodoList = (): JSX.Element => {
     const filteredTodos = useAppSelector(getFilteredTodos)
     return (
-        <ul>
+        <ul className='todo-list'>
             {filteredTodos.map((todo) =>
                 <TodoItem key={todo.id}
                     {...todo}

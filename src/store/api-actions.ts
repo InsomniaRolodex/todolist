@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { State, Todos } from "../types/types";
-import { addTodo, editTodo, removeTodo, toggleTodoComplete } from "./todo-slice";
+import { addTodo, editTodo, removeTodo, toggleFilter, toggleTodoComplete } from "./todo-slice";
 import uniqid from "uniqid";
 
 export const fetchTodos = createAsyncThunk<
@@ -31,8 +31,8 @@ export const fetchTodos = createAsyncThunk<
 export const deleteTodo = createAsyncThunk<
   void,
   number,
-  { rejectValue: string }
->("todos/deleteTodo", async function (id, { rejectWithValue, dispatch }) {
+  { state: State; rejectValue: string }
+>("todos/deleteTodo", async function (id, { rejectWithValue, dispatch, getState }) {
   try {
     const response = await fetch(
       `https://jsonplaceholder.typicode.com/todos/${id}`,
@@ -46,6 +46,14 @@ export const deleteTodo = createAsyncThunk<
     }
 
     dispatch(removeTodo({ id }));
+
+    const completedFilter = getState().tasks.filterStatus;
+    const completedTodo = getState().tasks.todos.find(todo => todo.completed);
+
+    if (completedFilter === 'Completed' && !completedTodo) {
+      dispatch(toggleFilter('All'))
+    };
+
   } catch (err) {
     if (err instanceof Error) {
       return rejectWithValue(err.message);
