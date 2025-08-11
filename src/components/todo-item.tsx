@@ -17,20 +17,26 @@ const TodoItem = ({ id, completed, title }: Todo): JSX.Element => {
   return (
     <li className="todo-list__item" key={id}>
       <form className='todo-list__form todo-item' action={`https://jsonplaceholder.typicode.com/todos/${id}`} method='post' onSubmit={handleEdit}>
+        <label
+          className={`todo-item__label ${completed && 'todo-item__label--checked'}`}
+          htmlFor={`todo-complete-${id}`}>
+          <input
+            className="todo-item__checkbox visually-hidden"
+            name="complete-todo"
+            type='checkbox'
+            checked={completed}
+            onChange={() => dispatch(toggleStatus(id))}
+            id={`todo-complete-${id}`}
+          />
+        </label>
         <input
-          name="complete-todo"
-          className="todo-item__checkbox"
-          type='checkbox'
-          checked={completed}
-          onChange={() => dispatch(toggleStatus(id))}
-        />
-        <input
-          name="todo-name"
           className="todo-item__text"
+          name="todo-name"
           type="text"
           value={editId ? todoTitle : title}
           onChange={(e) => setTodoTitle(e.target.value)}
           disabled={editId !== id}
+          size={40}
         />
         {editId !== id ? <button className='todo-item__button todo-item__button--edit' type='button' onClick={() => dispatch(toggleEditStatus(id))}>edit todo</button> : ''}
         {editId === id ? <button className='todo-item__button todo-item__button--approve' type='submit'>approve</button> : ''}

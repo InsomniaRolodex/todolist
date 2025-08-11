@@ -7,6 +7,7 @@ import {addNewTodo, fetchTodos} from './store/api-actions'
 import TodoFilter from './components/todo-filter';
 import { State, useAppDispatch, useAppSelector } from './types/types';
 import { toggleEditStatus } from './store/todo-slice';
+import Header from './components/header';
 
 function App() {
   const [text, setText] = useState('');
@@ -38,7 +39,7 @@ function App() {
 
       {status === 'loading' && <h2>Loading in process...</h2>}
       {error && <h2>Error occured! {error}</h2>}
-
+      <Header />
       <TodoList />
       <TodoFilter />
       <InputFiled
