@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { State, Todos } from "../types/types";
-import { addTodo, editTodo, removeTodo, toggleFilter, toggleTodoComplete } from "./todo-slice";
+import { addTodo, editTodo, removeTodo, setSendingId, toggleFilter, toggleTodoComplete } from "./todo-slice";
 import uniqid from "uniqid";
 
 export const fetchTodos = createAsyncThunk<
@@ -77,6 +77,7 @@ export const toggleStatus = createAsyncThunk<
     }
 
     try {
+      dispatch(setSendingId(id))
       const response = await fetch(
         `https://jsonplaceholder.typicode.com/todos/${id}`,
         {

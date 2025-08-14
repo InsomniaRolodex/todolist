@@ -1,0 +1,15 @@
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+};
+
+.filters__todos-quantity {
+    font-size: 1.1rem;
+    margin-right: auto;
+}
+
+.filters__todos-quantity span {
+    font-size: 1.2rem;
+}

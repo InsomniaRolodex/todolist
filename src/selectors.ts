@@ -5,6 +5,7 @@ import { filterTodos } from "./utils";
 export const getTodos = (state: State) => state.tasks.todos;
 export const getFilterType = (state: State) => state.tasks.filterStatus;
 export const getEditStatus = (state: State) => state.tasks.isEditing;
+export const getSendingId = (state: State) => state.tasks.sendingId;
 
 export const getFilteredTodos = createSelector(
     [getTodos, getFilterType],

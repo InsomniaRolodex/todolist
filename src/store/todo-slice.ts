@@ -20,6 +20,7 @@ type todosProcess = {
   error: boolean;
   filterStatus: FilterType;
   isEditing: null | number;
+  sendingId: null | number;
 };
 
 const initialState: todosProcess = {
@@ -28,6 +29,7 @@ const initialState: todosProcess = {
   error: false,
   filterStatus: Filter.All,
   isEditing: null,
+  sendingId: null
 };
 
 const todoSlice = createSlice({
@@ -65,6 +67,9 @@ const todoSlice = createSlice({
         throw new Error("Can not edit todo for some reason");
       }
     },
+    setSendingId(state, action) {
+      state.sendingId = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -76,12 +81,15 @@ const todoSlice = createSlice({
         state.status = "fulfilled";
         state.todos = action.payload;
       })
+      .addCase(toggleStatus.fulfilled, (state) => {
+        state.sendingId = null;
+      })
       .addCase(fetchTodos.rejected, setError)
       .addCase(deleteTodo.rejected, setError)
       .addCase(toggleStatus.rejected, setError);
   },
 });
 
-export const { addTodo, removeTodo, toggleTodoComplete, toggleFilter, editTodo, toggleEditStatus } = todoSlice.actions;
+export const { addTodo, removeTodo, toggleTodoComplete, toggleFilter, editTodo, toggleEditStatus, setSendingId } = todoSlice.actions;
 
 export default todoSlice.reducer;

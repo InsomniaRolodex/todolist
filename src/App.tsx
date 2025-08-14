@@ -2,7 +2,6 @@ import './styles/App.scss';
 import { useState, useEffect, ChangeEvent } from 'react';
 import TodoList from './components/todo-list';
 import InputFiled from './components/input-field';
-
 import {addNewTodo, fetchTodos} from './store/api-actions'
 import TodoFilter from './components/todo-filter';
 import { State, useAppDispatch, useAppSelector } from './types/types';

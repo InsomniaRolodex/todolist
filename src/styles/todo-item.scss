@@ -1,6 +1,17 @@
 .todo-item {
+    position: relative;
     display: flex;
     gap: 3px;
+}
+
+
+.todo-item::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    bottom: 0;
+    background-color: rgba(99, 103, 116, 0.5019607843);
 }
 
 .todo-item__label {
@@ -9,6 +20,21 @@
     padding-left: 25px;
     height: 100%;
     cursor: pointer;
+}
+
+.todo-item__label:hover {
+    opacity: .3;
+    transition-duration: .3s;
+}
+
+.todo-item__label:active {
+    opacity: .7;
+    transition-duration: .3s;
+}
+
+.todo-item__label:focus-within {
+    opacity: .3;
+    transition-duration: .3s;
 }
 
 .todo-item__label::before {
@@ -32,10 +58,118 @@
 }
 
 .todo-item__text {
-    font-size: 1.1rem;
-    height: 1.7rem;
+    font-size: 1rem;
+    height: 1.4rem;
     display: inline-block;
     border: none;
-    border-bottom: 1px rgba(99, 103, 116, 0.5019607843) solid;
     background-color: transparent;
+}
+
+.todo-item__text:focus {
+    border: none;
+    outline: none;
+}
+
+.todo-item__button {
+    position: relative;
+    border: none;
+    width: 22px;
+    height: 22px;
+    background-color: transparent;
+}
+
+.todo-item__button--edit::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    mask-image: url('../img/edit-3-svgrepo-com.svg');
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: #636774;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.todo-item__button--approve::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    mask-image: url('../img/approved-aproved-confirm-2-svgrepo-com.svg');
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: #636774;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.todo-item__button--delete::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    mask-image: url('../img/delete-svgrepo-com.svg');
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: #636774;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.todo-item__button--cancel::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    mask-image: url('../img/close-svgrepo-com.svg');
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: #636774;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.todo-item__button:hover {
+    opacity: .3;
+    transition-duration: .3s;
+}
+
+.todo-item__button:active {
+    opacity: .7;
+    transition-duration: .3s;
+}
+
+.todo-item__button:focus {
+    border: none;
+    border-radius: 50%;
+    outline: 2px solid #636774;
+    transition-duration: .3s;  
+}
+
+.todo-item__label--sending::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    mask-image: url('../img/arrow-cw-svgrepo-com.svg');
+    transform: translate(-25px, 0px);
+    background-color: #1f6cac;
+    mask-size: 22px, 16px;
+    mask-repeat: no-repeat;
+    animation: spin 1s linear infinite;
+
+    @keyframes spin {
+        from {
+            transform: translate(-25px, 0) rotate(0deg);
+        }
+
+        to {
+            transform: translate(-25px, 0) rotate(360deg);
+        }
+    }
 }

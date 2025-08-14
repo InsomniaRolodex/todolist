@@ -16,7 +16,10 @@ const TodoFilter = (): JSX.Element => {
     }
     return (
         <div className="filters">
-            <span className="filters__todos-quantity">{activeTodos.length} items left</span>
+            <span className="filters__todos-quantity">
+                <span>{activeTodos.length} </span>
+                items left
+            </span>
             <label className="filters__label" htmlFor="all">
                 <input className="filters__input" type="radio" name="filter" value={'All'} id="all"
                     onChange={(e) => dispatch(toggleFilter(e.target.value as FilterType))}
