@@ -6,15 +6,14 @@ html,
 body {
   height: 100%;
   font-size: 18px;
-  background: #d9d9d9;
-  background: linear-gradient(132deg, rgba(217, 217, 217, 1) 0%, rgba(143, 143, 143, 1) 100%);
 }
 
 #root {
   display: flex;
   justify-content: center;
   height: 100%;
-  background: linear-gradient(132deg, rgb(217, 217, 217) 0%, rgba(143, 143, 143, 1) 100%);
+  background: linear-gradient(132deg, #ddcaca 0%, #beb1b1 100%);
+  background-image: url('../img/css-pattern-by-magicpattern.png');
   padding: 10px;
 }
 

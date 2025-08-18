@@ -1,10 +1,12 @@
 .app-page {
     display: flex;
-    width: fit-content;
+    width: 44vw;
     height: fit-content;
+    max-height: 100%;
     padding: 10px;
     flex-direction: column;
     gap: 7px;
     border: 1px solid #63677480;
     border-radius: 5px;
+    background-color: #ddcaca;
 };

@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     gap: 3px;
+    width: 100%;
 }
 
 
@@ -78,6 +79,10 @@
     background-color: transparent;
 }
 
+.todo-item__button--edit {
+    margin-left: auto;
+}
+
 .todo-item__button--edit::before {
     content: '';
     position: absolute;
@@ -90,6 +95,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.todo-item__button--approve {
+    margin-left: auto;
 }
 
 .todo-item__button--approve::before {

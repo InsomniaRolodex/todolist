@@ -2,6 +2,9 @@
     display: flex;
     flex-direction: column;
     gap: .5rem;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ddcaca #636774;
 }
 
 .todo-list__item {
