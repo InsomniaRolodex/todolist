@@ -76,7 +76,7 @@ const TodoItem = ({ id, completed, title }: Todo): JSX.Element => {
           value={editId ? todoTitle : title}
           onChange={(e) => setTodoTitle(e.target.value)}
           disabled={editId !== id}
-          size={40}
+          size={48}
           ref={inputRef}
         />
         {editId !== id ? <button className='todo-item__button todo-item__button--edit' type='button' onClick={editTodo}>

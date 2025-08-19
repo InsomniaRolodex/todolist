@@ -46,7 +46,6 @@
     mask-image: url('../img/tick.svg.png');
     transform: translate(-25px, 0);
     background-color: #636774;
-    ;
 }
 
 .todo-item__label--checked::before {
@@ -55,7 +54,7 @@
     width: 22px;
     height: 16px;
     mask-image: url('../img/tick.svg.png');
-    background-color: rgb(16, 212, 16);
+    background-color: #10d410;
 }
 
 .todo-item__text {

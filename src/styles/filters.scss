@@ -1,15 +1,129 @@
 .filters {
+    padding-top: 1rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 5px;
+    gap: .7rem;
 };
 
 .filters__todos-quantity {
-    font-size: 1.1rem;
-    margin-right: auto;
+    font-size: 1rem;
+    text-align: end;
+    width: 100%;
 }
 
 .filters__todos-quantity span {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+}
+.filters__label {
+    position: relative;
+    color: #636774;
+    font-size: .9rem;
+    cursor: pointer;
+}
+
+.filters__label::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    background-color: #636774;
+    right: -.4rem;
+}
+
+[for="Completed"]::before {
+    display: none;
+}
+
+.filters__label::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: #636774;
+    left: 0;
+    bottom: -1px;
+    width: 0;
+    transition: width 0.2s ease-out;
+}
+
+.filters__label--current::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: #636774;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+}
+
+.filters__label:hover::after,
+.filters__label:focus-within::after {
+    width: 100%;
+}
+
+.filters__label:active {
+    color: #6367744d;
+    transition-duration: 0.3s; 
+}
+
+.filters__label--checked::before {
+    content: '';
+    position: absolute;
+    height: 1px;
+    background-color: #636774;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+}
+
+
+.filters__button {
+    position: relative;
+    margin-left: auto;
+    padding: 0;
+    padding-right: 30px;
+    padding-left: 5px;
+    border: none;
+    outline: solid 1px #636774;
+    border-radius: 3px;
+    background-color: transparent;
+    font-size: .9rem;
+    line-height: 1.3rem;
+}
+
+.filters__button:hover,
+.filters__button:focus {
+    color: #6367744d;
+    outline: none;
+    transition-duration: 0.3s;
+}
+
+.filters__button:active {
+    color: #636774b3;
+    transition-duration: 0.3s; 
+}
+
+.filters__button::before {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    mask-image: url('../img/delete-svgrepo-com.svg');
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    background-color: #636774;
+    top: 50%;
+    right: 3px;
+    transform: translate(0, -50%);
+}
+
+.filters__button:hover::before,
+.filters__button:focus::before {
+    background-color: #6367744d;
+    transition-duration: 0.3s;
+}
+
+.filters__button:active::before {
+    color: #636774b3;
+    transition-duration: 0.3s; 
 }
