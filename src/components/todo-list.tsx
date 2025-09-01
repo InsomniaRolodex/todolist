@@ -8,7 +8,7 @@ const TodoList = (): JSX.Element => {
     const filteredTodos = useAppSelector(getFilteredTodos)
     return (
         <>
-            <ul className='todo-list'>
+            <ul className='todo-list' data-testid='list-container'>
                 {filteredTodos.map((todo) =>
                     <TodoItem key={todo.id}
                         {...todo}
