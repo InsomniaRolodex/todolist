@@ -14,7 +14,7 @@ const setError = (
   state.error = action.payload;
 };
 
-type todosProcess = {
+export type todosProcess = {
   todos: Todos;
   status: string | null;
   error: boolean;
@@ -32,7 +32,7 @@ const initialState: todosProcess = {
   sendingId: null
 };
 
-const todoSlice = createSlice({
+export const todoSlice = createSlice({
   name: "todos",
   initialState,
   reducers: {
