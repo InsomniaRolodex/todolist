@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Todos, FilterType } from "../types/types";
 import { Filter } from "../const";
-import { deleteTodo, fetchTodos, toggleStatus } from "./api-actions";
+import { addNewTodo, deleteTodo, fetchTodos, patchTodo, toggleStatus } from "./api-actions";
 
 const setError = (
   state: todosProcess,
@@ -68,8 +68,8 @@ export const todoSlice = createSlice({
       }
     },
     setSendingId(state, action) {
-      state.sendingId = action.payload
-    }
+      state.sendingId = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -86,7 +86,9 @@ export const todoSlice = createSlice({
       })
       .addCase(fetchTodos.rejected, setError)
       .addCase(deleteTodo.rejected, setError)
-      .addCase(toggleStatus.rejected, setError);
+      .addCase(toggleStatus.rejected, setError)
+      .addCase(addNewTodo.rejected, setError)
+      .addCase(patchTodo.rejected, setError);
   },
 });
 
