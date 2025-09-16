@@ -1,11 +1,12 @@
 import { JSX } from "react";
 import { useAppSelector } from "../types/types";
 import TodoItem from "./todo-item";
-import { getFilteredTodos } from "../selectors";
+import { getFilteredTodos, getLoadingStatus } from "../selectors";
 import Notodos from "./no-todos";
 
 const TodoList = (): JSX.Element => {
-    const filteredTodos = useAppSelector(getFilteredTodos)
+    const filteredTodos = useAppSelector(getFilteredTodos);
+    const loadingStatus = useAppSelector(getLoadingStatus);
     return (
         <>
             <ul className='todo-list' data-testid='list-container'>
@@ -13,7 +14,7 @@ const TodoList = (): JSX.Element => {
                     <TodoItem key={todo.id}
                         {...todo}
                     />)}
-            {!filteredTodos.length && <Notodos />}
+            {!filteredTodos.length && loadingStatus !== 'loading' ? <Notodos /> : ''}
             </ul>
         </>
     )

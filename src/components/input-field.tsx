@@ -8,7 +8,7 @@ type InputFiledProps = {
 
 const InputFiled = ({text, handleInput, handleSubmit}: InputFiledProps): JSX.Element => {
     return (
-        <form className='new-todo' action='https://jsonplaceholder.typicode.com/todos/' method='post' onSubmit={handleSubmit} >
+        <form className='new-todo' action='https://jsonplaceholder.typicode.com/todos/' method='post' onSubmit={handleSubmit} data-testid='input-form'>
             <label className='new-todo__lable'>
                 <input className='new-todo__input'
                 name='new-todo'

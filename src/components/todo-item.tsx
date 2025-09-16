@@ -4,7 +4,9 @@ import { Todo, useAppDispatch, useAppSelector } from "../types/types";
 import { toggleEditStatus } from "../store/todo-slice";
 import { getEditStatus, getSendingId } from "../selectors";
 
-const TodoItem = ({ id, completed, title }: Todo): JSX.Element => {
+type TodoItemProps = Omit<Todo, 'userId'>
+
+const TodoItem = ({ id, completed, title }: TodoItemProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const [todoTitle, setTodoTitle] = useState(title);
   const todoRef= useRef<HTMLLIElement>(null);
@@ -54,7 +56,9 @@ const TodoItem = ({ id, completed, title }: Todo): JSX.Element => {
   return (
     <li className="todo-list__item"
       key={id}
-      ref={todoRef}>
+      ref={todoRef}
+      data-testid='list-item'
+    >
       <form className='todo-list__form todo-item' action={`https://jsonplaceholder.typicode.com/todos/${id}`} method='post' onSubmit={handleEdit}>
         <label
           className={`todo-item__label ${completed && 'todo-item__label--checked'} ${isSending === id ? 'todo-item__label--sending' : ''}`}

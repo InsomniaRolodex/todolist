@@ -16,7 +16,7 @@ const TodoFilter = (): JSX.Element => {
         completedTodos.forEach(todo => dispatch(deleteTodo(todo.id)));
     }
     return (
-        <div className="filters">
+        <div className="filters" data-testid='filter-element'>
             {Object.values(Filter).map((filter) =>
                 <label className={`filters__label ${filter === curretFilter ? 'filters__label--current' : ''}`} htmlFor={filter} key={Object.values(Filter).indexOf(filter)}>
                     <input className="filters__input visually-hidden" type="radio" name="filter" value={filter} id={filter}
